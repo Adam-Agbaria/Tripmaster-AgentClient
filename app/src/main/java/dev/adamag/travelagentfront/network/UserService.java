@@ -1,0 +1,27 @@
+package dev.adamag.travelagentfront.network;
+
+
+import dev.adamag.travelagentfront.model.User;
+import dev.adamag.travelagentfront.model.UserInput;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+
+public interface UserService {
+
+    @POST("superapp/users")
+    Call<User> createUser(@Body UserInput user);
+
+    @PUT("superapp/users/{superapp}/{email}")
+    Call<Void> updateUser(@Path("superapp") String superapp, @Path("email") String email, @Body User user);
+
+    @GET("superapp/users/login/{superapp}/{email}")
+    Call<User> getUserById(@Path("superapp") String superapp, @Path("email") String email);
+
+    // Uncomment and add if you need delete functionality
+    // @DELETE("yourApplicationName/users/{email}")
+    // Call<Void> deleteUserById(@Path("email") String email);
+}
